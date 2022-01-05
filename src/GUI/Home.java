@@ -363,9 +363,16 @@ public class Home extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         buyTb.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -386,9 +393,16 @@ public class Home extends javax.swing.JFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         sellTb.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -528,20 +542,52 @@ public class Home extends javax.swing.JFrame {
     public static ChatScreen scrn1;
     public static ChatScreen scrn2;
     private void sellTbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sellTbMouseClicked
+       
+        
+        if(evt.getClickCount()==2){
         System.out.println("scren 2" + sellers.get(sellTb.getSelectedRow()));
         if (scrn2 == null) {
             msg = "";
             scrn2 = new ChatScreen(sellers.get(sellTb.getSelectedRow()));
             scrn2.setVisible(true);
+        }}
+        
+        else if(evt.getClickCount()==1){
+           DefaultTableModel tblmodel = (DefaultTableModel)sellTb.getModel();
+            
+           String fname = tblmodel.getValueAt(sellTb.getSelectedRow(),0).toString();
+           String lname = tblmodel.getValueAt(sellTb.getSelectedRow(),1).toString();      
+           String area = tblmodel.getValueAt(sellTb.getSelectedRow(),2).toString();
+           
+           seller_fname.setText(fname);
+           seller_lname.setText(lname);
+           seller_area.setText(area);
+           
+           
         }
+        
     }//GEN-LAST:event_sellTbMouseClicked
 
     private void buyTbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buyTbMouseClicked
+         if(evt.getClickCount()==2){
         System.out.println("scren 1" + buyers.get(buyTb.getSelectedRow()));
         if (scrn1 == null) {
             msg = "";
             scrn1 = new ChatScreen(buyers.get(buyTb.getSelectedRow()));
             scrn1.setVisible(true);
+        }}
+         else if(evt.getClickCount()==1){
+           DefaultTableModel tblmodel = (DefaultTableModel)buyTb.getModel();
+            
+           String fname = tblmodel.getValueAt(buyTb.getSelectedRow(),0).toString();
+           String lname = tblmodel.getValueAt(buyTb.getSelectedRow(),1).toString();      
+           String area = tblmodel.getValueAt(buyTb.getSelectedRow(),2).toString();
+           
+           buyerFname.setText(fname);
+           buyerLname.setText(lname);
+           buyerArea.setText(area);
+           
+           
         }
     }//GEN-LAST:event_buyTbMouseClicked
 
@@ -553,18 +599,70 @@ public class Home extends javax.swing.JFrame {
 
     private void svSeller1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_svSeller1ActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel tblModel = (DefaultTableModel)sellTb.getModel();
+        if(sellTb.getSelectedRowCount()== 1){
+            String fname = seller_fname.getText();
+            String lname = seller_lname.getText();
+            String area = seller_area.getText();
+            
+            tblModel.setValueAt(fname, sellTb.getSelectedRow(),0);
+            tblModel.setValueAt(lname, sellTb.getSelectedRow(),1);
+            tblModel.setValueAt(area, sellTb.getSelectedRow(),2);
+            
+            seller_fname.setText("");
+           seller_lname.setText("");
+           seller_area.setText("");
+            
+            JOptionPane.showMessageDialog(this, "Update Successfully..");
+        }else{
+            if(sellTb.getRowCount()==0){
+               JOptionPane.showMessageDialog(this, "Tabale is empty"); 
+            }
+        }
     }//GEN-LAST:event_svSeller1ActionPerformed
 
     private void svSeller2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_svSeller2ActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel tblModel = (DefaultTableModel)sellTb.getModel();
+        
+            tblModel.removeRow(sellTb.getSelectedRow());
+            seller_fname.setText("");
+            seller_lname.setText("");
+            seller_area.setText("");
     }//GEN-LAST:event_svSeller2ActionPerformed
 
     private void svSeller3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_svSeller3ActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel tblModel = (DefaultTableModel)buyTb.getModel();
+        if(buyTb.getSelectedRowCount()== 1){
+            String fname = buyerFname.getText();
+            String lname = buyerLname.getText();
+            String area = buyerArea.getText();
+            
+            tblModel.setValueAt(fname, buyTb.getSelectedRow(),0);
+            tblModel.setValueAt(lname, buyTb.getSelectedRow(),1);
+            tblModel.setValueAt(area, buyTb.getSelectedRow(),2);
+            
+            JOptionPane.showMessageDialog(this, "Update Successfully..");
+            
+            buyerFname.setText("");
+           buyerLname.setText("");
+           buyerArea.setText("");
+        }else{
+            if(buyTb.getRowCount()==0){
+               JOptionPane.showMessageDialog(this, "Tabale is empty"); 
+            }
+        }
     }//GEN-LAST:event_svSeller3ActionPerformed
 
     private void svSeller4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_svSeller4ActionPerformed
         // TODO add your handling code here:
+        DefaultTableModel tblModel = (DefaultTableModel)buyTb.getModel();
+        
+            tblModel.removeRow(buyTb.getSelectedRow());
+            buyerFname.setText("");
+           buyerLname.setText("");
+           buyerArea.setText("");
     }//GEN-LAST:event_svSeller4ActionPerformed
 
     /**
