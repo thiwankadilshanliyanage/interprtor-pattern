@@ -19,7 +19,7 @@ import sun.audio.AudioPlayer;
 
 /**
  *
- * @author grays
+ * @author Thiwanka
  */
 public class ChatScreen extends javax.swing.JFrame {
 

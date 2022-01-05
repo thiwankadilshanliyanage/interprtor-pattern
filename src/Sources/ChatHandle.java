@@ -12,7 +12,7 @@ import javax.swing.JTextArea;
 
 /**
  *
- * @author grays
+ * @author Thiwanka
  */
 public class ChatHandle {
 

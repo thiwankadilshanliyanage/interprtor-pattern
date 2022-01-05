@@ -7,7 +7,7 @@ package Sources;
 
 /**
  *
- * @author grays
+ * @author Thiwanka
  */
 public class Seller extends ShopChatAdmin {
 
