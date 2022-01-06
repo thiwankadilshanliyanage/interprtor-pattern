@@ -9,12 +9,12 @@ package Sources;
  *
  * @author Thiwanka
  */
-public abstract class ShopChatAdmin {
+public abstract class Admin {
 
-    ChatHandle ch;
+    HandleChat ch;
     
-    public abstract void setCh(ChatHandle ch);
-    public abstract ChatHandle getCh();
+    public abstract void setCh(HandleChat ch);
+    public abstract HandleChat getCh();
 
     public abstract void setFirstName(String firstName);
 

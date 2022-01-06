@@ -6,7 +6,7 @@
 package GUI;
 
 import Sources.Buyer;
-import Sources.ChatHandle;
+import Sources.HandleChat;
 import Sources.Seller;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +19,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Thiwanka
  */
-public class Home extends javax.swing.JFrame {
+public class Main extends javax.swing.JFrame {
 
     /**
      * Creates new form Home
      */
-    public Home() {
+    public Main() {
         initComponents();
     }
 
@@ -32,7 +32,7 @@ public class Home extends javax.swing.JFrame {
     DefaultTableModel modelSeller;
     List<Buyer> buyers = new ArrayList<>();
     List<Seller> sellers = new ArrayList<>();
-    ChatHandle handle = new ChatHandle();
+    HandleChat handle = new HandleChat();
 
     private static String msg = "";
 
@@ -41,7 +41,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     public static void setMsg(String msg) {
-        Home.msg = msg;
+        Main.msg = msg;
     }
 
     /**
@@ -539,8 +539,8 @@ public class Home extends javax.swing.JFrame {
         buyerArea.setText("");
         }
     }//GEN-LAST:event_svBuyerActionPerformed
-    public static ChatScreen scrn1;
-    public static ChatScreen scrn2;
+    public static Chatter scrn1;
+    public static Chatter scrn2;
     private void sellTbMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sellTbMouseClicked
        
         
@@ -548,7 +548,7 @@ public class Home extends javax.swing.JFrame {
         System.out.println("scren 2" + sellers.get(sellTb.getSelectedRow()));
         if (scrn2 == null) {
             msg = "";
-            scrn2 = new ChatScreen(sellers.get(sellTb.getSelectedRow()));
+            scrn2 = new Chatter(sellers.get(sellTb.getSelectedRow()));
             scrn2.setVisible(true);
         }}
         
@@ -573,7 +573,7 @@ public class Home extends javax.swing.JFrame {
         System.out.println("scren 1" + buyers.get(buyTb.getSelectedRow()));
         if (scrn1 == null) {
             msg = "";
-            scrn1 = new ChatScreen(buyers.get(buyTb.getSelectedRow()));
+            scrn1 = new Chatter(buyers.get(buyTb.getSelectedRow()));
             scrn1.setVisible(true);
         }}
          else if(evt.getClickCount()==1){
@@ -682,20 +682,21 @@ public class Home extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Home.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Home().setVisible(true);
+                new Main().setVisible(true);
             }
         });
     }

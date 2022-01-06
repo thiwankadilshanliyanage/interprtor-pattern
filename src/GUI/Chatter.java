@@ -5,8 +5,8 @@
  */
 package GUI;
 
-import Sources.ChatHandle;
-import Sources.ShopChatAdmin;
+import Sources.HandleChat;
+import Sources.Admin;
 import java.awt.Color;
 import java.awt.event.WindowListener;
 import java.util.HashMap;
@@ -21,18 +21,19 @@ import sun.audio.AudioPlayer;
  *
  * @author Thiwanka
  */
-public class ChatScreen extends javax.swing.JFrame {
+public class Chatter extends javax.swing.JFrame {
 
     /**
      * Creates new form ChatScreen
      *
      * @param shop
      */
-    ShopChatAdmin shop;
-    ChatHandle cHndle;
-    boolean view = true;
+    Admin shop;
+    HandleChat cHndle;
+    boolean view1 = true;
+    boolean view2 = true;
 
-    public ChatScreen(ShopChatAdmin shop) {
+    public Chatter(Admin shop) {
         this.shop = shop;
         System.out.println("after---------- " + shop.getCh());
         initComponents();
@@ -209,7 +210,8 @@ public class ChatScreen extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         cHndle.setReciverMsg(shop, msgSend.getText());
-        System.out.println("Texted---- " + msgSend.getText());
+        msgSend.setText("");
+        //System.out.println("Texted---- " + msgSend.getText());
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -239,24 +241,27 @@ public class ChatScreen extends javax.swing.JFrame {
         name.setText(shop.getFirstName() + " " + shop.getLastName());
         area.setText(shop.getArea());
         cHndle = shop.getCh();
-        HashMap<ShopChatAdmin, String> map = cHndle.getMap();
+        HashMap<Admin, String> map = cHndle.getMap();
         thread.start();
     }
 
     @Override
     public void dispose() {
-        view = false;
-        if (!Home.scrn1.view) {
-            Home.scrn1 = null;
-        } else if (!Home.scrn2.view) {
-            Home.scrn2 = null;
+        view1 = false;
+        view2 = false;
+        
+        if (!Main.scrn1.view1) {
+            Main.scrn1 = null;
+            
+        } else if (!Main.scrn2.view2) {
+            Main.scrn2 = null;
         } else {
-            Home.scrn1 = null;
-            Home.scrn2 = null;
+            Main.scrn1 = null;
+            Main.scrn2 = null;
         }
 
         cHndle.getMap().clear();
-        Home.setMsg("");
+        Main.setMsg("");
         super.dispose();
     }
 
@@ -267,9 +272,9 @@ public class ChatScreen extends javax.swing.JFrame {
                 try {
                     Thread.sleep(20);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(ChatScreen.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Chatter.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                msgArea.setText(Home.getMsg());
+                msgArea.setText(Main.getMsg());
             }
         }
     });
@@ -291,14 +296,15 @@ public class ChatScreen extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChatScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Chatter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChatScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Chatter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChatScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Chatter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChatScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Chatter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

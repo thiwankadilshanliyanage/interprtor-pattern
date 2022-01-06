@@ -9,14 +9,14 @@ package Sources;
  *
  * @author Thiwanka
  */
-public class Buyer extends ShopChatAdmin{
+public class Buyer extends Admin{
 
     private String firstName;
     private String lastName;
     private String area;
     
     @Override
-    public void setCh(ChatHandle ch) {
+    public void setCh(HandleChat ch) {
        this.ch=ch;
     }
 
@@ -46,7 +46,7 @@ public class Buyer extends ShopChatAdmin{
     }
 
     @Override
-    public ChatHandle getCh() {
+    public HandleChat getCh() {
         return ch;
     }
     
