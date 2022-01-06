@@ -8,6 +8,7 @@ package Sources;
 import GUI.Main;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 /**
@@ -32,12 +33,12 @@ public class HandleChat {
     public void setReciverMsg(Admin admin, String msng) {
         map.put(admin, msng);
         if (msng.matches("^(.+)@(.+)$")) {
-            msng = "Emails are Not valid in this Conversion";
+            msng = "prohibited-Emails are Not valid in this Conversion";
         } else if (msng.matches("^\\+(?:[0-9] ?){6,14}[0-9]$")) {
-            msng = "Phone Numbers are Not valid in this Conversion";
+            msng = "prohibited-Phone Numbers are Not valid in this Conversion";
         }
         if (Main.scrn1 == null || Main.scrn2 == null) {
-            Main.setMsg(Main.getMsg() + "\n" + admin.getFirstName() + " : No Partner in this Conversion");
+            Main.setMsg(Main.getMsg() + "\n" + admin.getFirstName() + " : Not anyone for chat");
         } else {
             Main.setMsg(Main.getMsg() + "\n" + admin.getFirstName() + " : " + msng);
         }
